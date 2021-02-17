@@ -1,5 +1,5 @@
 <template>
-    <div class="area" ref="areaScroll" v-if="cityInfo">
+    <div class="area" ref="area_scroll" v-if="cityInfo">
        <div class="scroll_wrap">
            <!-- 热门城市 -->
            <div class="hot_wrap citylist">
@@ -11,11 +11,11 @@
            <!-- 所有城市 -->
            <div class="city_wrap">
                <!-- 循环字母排序的key -->
-               <div class="city_content citylist" id="citylist" v-for="(item,index) in keys" :key="index">
+               <div class="city_content citylist" v-for="(item,index) in keys" :key="index">
                    <div class="title">{{item}}</div>
                    <!-- 根据字母key展示城市名 -->
                    <ul>
-                       <li  @click="$emit('selectCity',city)" v-for="(city,index) in cityInfo[item]" :key="index">{{city.name}}</li>
+                       <li v-for="(city,index) in cityInfo[item]" :key="index">{{city.name}}</li>
                    </ul>
                </div>
            </div>
@@ -45,19 +45,19 @@ export default {
     methods: {
         initScroll(){
             console.log(this.$refs.area_scroll)
-            this.scroll=new BScroll(this.$refs.areaScroll,{
+            this.scroll=new BScroll(this.$refs.area_scroll,{
                 click:true
             });
         },
         selectKey(index){
             // console.log(this.$refs.area_scroll.getElementsByClassName("citylist"))
-            const citylist=this.$refs.area_scroll.getElementById("citylist");
+            const citylist=this.$refs.area_scroll.getElementsByClassName("citylist");
             // 根据下标滚动到相应的元素上
             let el=citylist[index];
             // 滚动到相应的位置上
             console.log(el)
             // 使用这个方法无法使用下面的方法
-            this.scroll.scrollToElement(el,250)
+            // this.scroll.scrollToElement(el,250)
             
         }
     }

@@ -56,6 +56,7 @@ export default {
 
               geocoder.getAddress(lnglat, function (status, data) {
                 if (status === "complete" && data.info === "OK") {
+                  console.log(result)
                   // result为对应的地理位置详细信息
                   // result为对应的地理位置详细信息
                       root.$store.dispatch('setLocation',{
@@ -65,7 +66,7 @@ export default {
                         },
                         formattedAddress:data.regeocode.formattedAddress
                       });
-                      self.$store.dispatch('setAddress',data.regeocode.formattedAddress); 
+                      this.$store.dispatch('setAddress',data.regeocode.formattedAddress); 
                 }
               });
             });
